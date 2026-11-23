@@ -477,7 +477,7 @@ export default function HeroSection() {
     <section
       aria-roledescription="carousel"
       aria-label="Featured journeys"
-      className="relative w-full overflow-hidden bg-[#001F16]"
+      className="relative w-full overflow-hidden bg-[#001F16] pt-16 lg:pt-0"
     >
       {/* ── Slide images ── */}
       {slides.map((s, i) => {

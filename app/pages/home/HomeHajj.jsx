@@ -240,7 +240,7 @@ function CardContent({ pkg, visible }) {
 /* ═══ MAIN EXPORT ════════════════════════════════════════ */
 export default function HajjPackages() {
   const sectionRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(-1); // -1 = intro, 0 = pkg1, 1 = pkg2
+  const [activeIndex, setActiveIndex] = useState(0); // 0 = pkg1, 1 = pkg2
 
   useEffect(() => {
     const handleScroll = () => {
@@ -251,12 +251,9 @@ export default function HajjPackages() {
       const vh = window.innerHeight;
 
       // Each "slide" is one viewport height
-      // slide 0 = intro (scrolled < vh)
-      // slide 1 = pkg1  (vh <= scrolled < 2vh)
-      // slide 2 = pkg2  (2vh <= scrolled < 3vh)
+      // slide 0 = pkg1  (scrolled < vh)
+      // slide 1 = pkg2  (vh <= scrolled)
       if (scrolled < vh * 0.5) {
-        setActiveIndex(-1);
-      } else if (scrolled < vh * 1.5) {
         setActiveIndex(0);
       } else {
         setActiveIndex(1);
@@ -270,8 +267,8 @@ export default function HajjPackages() {
 
   return (
     <>
-      {/* ── Scroll container: 4 screens tall (intro + 2 packages + trust) ── */}
-      <div ref={sectionRef} style={{ height: "400vh" }} className="relative">
+      {/* ── Scroll container: 2 screens tall (pkg1 + pkg2) ── */}
+      <div ref={sectionRef} style={{ height: "250vh" }} className="relative">
 
         {/* Fixed viewport — stays in place while user scrolls */}
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#080f0a]">
@@ -402,7 +399,22 @@ export default function HajjPackages() {
         </div>
       </div>
 
-     
+      {/* ── Trust strip (after scroll section) ── */}
+      <div className="bg-[#080f0a] border-t border-white/5 py-10">
+        <div className="mx-auto flex flex-wrap items-center justify-center gap-8 px-5 sm:gap-14">
+          {[
+            { icon: Shield, text: "ATOL Protected" },
+            { icon: CheckCircle2, text: "IATA Accredited" },
+            { icon: Star, text: "5,000+ Pilgrims" },
+            { icon: Sparkles, text: "Est. 2015" },
+          ].map(({ icon: Icon, text }) => (
+            <div key={text} className="flex items-center gap-2 text-white/25">
+              <Icon className="h-4 w-4 text-[#EEC74C]/40" />
+              <span className="text-xs font-bold uppercase tracking-widest">{text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </>
   );
 }

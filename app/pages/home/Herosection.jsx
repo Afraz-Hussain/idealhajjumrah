@@ -283,7 +283,7 @@ function BookingForm() {
             <form onSubmit={handleSubmit} className="space-y-2">
 
               {/* Row 1: Airport + Date */}
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 <SelectBox
                   icon={PlaneTakeoff}
                   label="Flying From"
@@ -306,7 +306,7 @@ function BookingForm() {
               </div>
 
               {/* Row 2: Phone + Email */}
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 <TextField
                   icon={Phone}
                   label="Phone"
@@ -365,14 +365,14 @@ function BookingForm() {
                           type="button"
                           aria-pressed={active}
                           onClick={() => setValue("hotel")(active ? "" : val)}
-                          className={`flex h-7 flex-1 items-center justify-center gap-1 rounded-lg border text-[11.5px] font-semibold transition-all duration-150 ${
+                          className={`flex h-7 flex-1 items-center justify-center gap-0.5 rounded-lg border text-[11px] font-semibold transition-all duration-150 ${
                             active
                               ? "border-[#006B43] bg-[#006B43] text-[#EEC74C]"
                               : "border-gray-200 text-gray-500 hover:border-[#006B43]/40 hover:text-[#006B43]"
                           }`}
                         >
                           {stars}
-                          <Star size={9} className="fill-current" />
+                          <Star size={8} className="fill-current" />
                         </button>
                       );
                     })}
@@ -392,7 +392,7 @@ function BookingForm() {
               <div className="grid grid-cols-3 gap-2">
                 <Counter
                   label="Adults"
-                  hint="12+"
+                  hint=" 12+"
                   value={form.adults}
                   min={1}
                   max={20}
@@ -400,14 +400,14 @@ function BookingForm() {
                 />
                 <Counter
                   label="Children"
-                  hint="2–11"
+                  hint=" 2-11"
                   value={form.children}
                   max={10}
                   onChange={setValue("children")}
                 />
                 <Counter
                   label="Infants"
-                  hint="0–2"
+                  hint=" 0-2"
                   value={form.infants}
                   max={6}
                   onChange={setValue("infants")}

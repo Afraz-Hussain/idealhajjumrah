@@ -70,7 +70,7 @@ const FooterLink = ({ href, children }) => (
 );
 
 export default function Footer() {
-  const year = new Date().getFullYear();
+  const year = 2027;
 
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
